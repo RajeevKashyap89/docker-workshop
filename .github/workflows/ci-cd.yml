@@ -1,0 +1,17 @@
+name: CI/CD pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PAT}}
+      - run: docker build -t rajeev/docker-workshop -f Dockerfile.dev .
+      - run: docker run -e CI = true rajeev/docker-workshop npm run test 
+
+      #- name: 
