@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PAT}}
+      - run: docker login -u ${{secrets.DOCKER_USERNAME}} --password-stdin
       - run: docker build -t rajeev/docker-workshop -f Dockerfile.dev .
       - run: docker run -e CI=true rajeev/docker-workshop npm test 
 
@@ -22,8 +22,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: docker-workshop
-          evironment_name: docker-env
+          application_name: Frontend
+          evironment_name: Frontend-env
           existing_bucket_name: elasticbeanstalk-us-east-2-133605102158
           region: us-east-2
           version_label: ${{ github.sha }}
