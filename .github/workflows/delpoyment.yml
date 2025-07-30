@@ -26,5 +26,5 @@ jobs:
           environment_name: Frontend-env
           existing_bucket_name: elasticbeanstalk-us-east-2-133605102158
           region: us-east-2
-          version_label: sample
+          version_label: Sample
           deployment_package: deploy.zip
